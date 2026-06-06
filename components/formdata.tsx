@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import * as React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -26,7 +25,7 @@ export default function FormData() {
         <div className='relative w-full h-full'>
           <Textarea
             placeholder='You can type your message here...'
-            className='text-sm rounded-sm h-70 md:h-30'
+            className='text-sm rounded-sm h-70 md:h-30 glass-card bg-transparent!'
             value={state.message}
             onChange={(e) => setState(prev => ({ ...prev, message: e.target.value }))}
           />
@@ -35,7 +34,7 @@ export default function FormData() {
 
         {/* Tab */}
         <Tabs defaultValue={state.mode} onValueChange={(e) => setState(prev => ({ ...prev, mode: e }))} className="w-full">
-          <TabsList className='w-full rounded-sm'>
+          <TabsList className='w-full rounded-sm glass-card bg-transparent!'>
             <TabsTrigger value="private" className='rounded-sm cursor-pointer'>
               {state.mode === 'private' ? <GrLock /> : <GrUnlock />}
               Private

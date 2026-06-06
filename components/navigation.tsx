@@ -21,7 +21,7 @@ export default function Navigation() {
   };
 
   return (
-    <div className='flex flex-row items-center justify-between sticky bottom-3 bg-muted px-3 rounded-full w-full max-w-3xl mx-auto'>
+    <div className='flex flex-row items-center justify-between sticky bottom-3 bg-muted px-3! rounded-full w-full max-w-3xl mx-auto glass-card'>
       <div className='flex flex-row gap-3 items-center'>
         <div className='text-sm font-black uppercase tracking-widest'>secreto</div>
         <div className='size-1.5 rounded-full bg-foreground' />
