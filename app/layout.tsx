@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navigation from "@/components/navigation";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -32,10 +33,11 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
-      <body className="min-h-full flex flex-col w-full relative p-3">
+      <body className="min-h-full flex flex-col w-full relative">
         <ThemeProvider defaultTheme="dark" attribute="class">
           <div className="flex-1 grow">{children}</div>
           <Navigation />
+          <Toaster position="bottom-center" richColors />
         </ThemeProvider>
       </body>
     </html>

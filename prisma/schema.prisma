@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Message {
+  id      String @id @default(cuid())
+  message String
+
+  isPrivate Boolean @default(true)
+  isAuthor  Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  parentId String?
+  parent   Message? @relation("MessageReplies", fields: [parentId], references: [id], onDelete: Cascade)
+
+  replies Message[] @relation("MessageReplies")
+}

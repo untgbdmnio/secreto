@@ -21,7 +21,7 @@ export default function Navigation() {
   };
 
   return (
-    <div className='flex flex-row items-center justify-between sticky bottom-3 bg-muted px-3! rounded-full w-full max-w-3xl mx-auto glass-card'>
+    <div className='flex flex-row items-center justify-between sticky backdrop-blur-lg bottom-3 bg-transparent! px-3! rounded-full w-full max-w-3xl mx-auto glass-card'>
       <div className='flex flex-row gap-3 items-center'>
         <div className='text-sm font-black uppercase tracking-widest'>secreto</div>
         <div className='size-1.5 rounded-full bg-foreground' />
@@ -43,15 +43,15 @@ export default function Navigation() {
         className='relative overflow-visible group cursor-pointer'
       >
         {theme === 'dark' ? (
-          <BsFillCloudMoonFill className='text-blue-500 z-10 size-6 relative drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]' />
+          <BsFillCloudMoonFill className='text-white z-10 size-6 relative drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]' />
         ) : (
-          <BsCloudSunFill className='text-yellow-500 z-10 size-6 relative drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]' />
+          <BsCloudSunFill className='text-white z-10 size-6 relative drop-shadow-[0_0_20px_rgba(234,179,8,0.5)]' />
         )}
 
         <div
           className={cn(
-            "absolute inset-0 m-auto size-4 rounded-full blur-xl opacity-70 transition-all duration-300 pointer-events-none z-0",
-            theme === 'dark' ? 'bg-blue-500 shadow-[0_0_20px_#3b82f6]' : 'bg-yellow-500 shadow-[0_0_20px_#eab308]',
+            "absolute inset-0 m-auto size-50 rounded-full blur-xl opacity-70 transition-all duration-300 pointer-events-none z-0",
+            theme === 'dark' ? 'bg-blue-700 shadow-[0_0_20px_#3b82f6]' : 'bg-yellow-500 shadow-[0_0_20px_#eab308]',
             "group-hover:scale-125 group-hover:opacity-100"
           )}
         />

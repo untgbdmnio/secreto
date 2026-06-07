@@ -5,12 +5,44 @@ import * as React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MdOutlinePublic, MdOutlinePublicOff } from "react-icons/md";
 import { GrLock, GrUnlock } from "react-icons/gr";
+import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
+import { createMessage } from '@/actions/message-action';
+import LatestMessage from '@/components/latest-message';
 
 export default function FormData() {
   const [state, setState] = React.useState({
     message: '',
     mode: 'private',
+    loading: false,
+    isMounted: true,
   });
+
+
+  const submitData = () => {
+
+    if (!state.message || state.message.length <= 0)
+      return toast.error("Failed to send message!", {
+        description: "Make sure you've typed a few words in the message!"
+      });
+
+    setState(prev => ({ ...prev, loading: true }));
+    setTimeout(async () => {
+      const response = await createMessage({ message: state.message, private: state.mode === 'private' });
+      if (response.success) {
+        toast.success("Message sent successfully!", {
+          description: response.message
+        });
+
+        setState(prev => ({
+          ...prev,
+          message: '',
+          loading: false,
+          isMounted: true,
+        }))
+      }
+    }, 1000);
+  }
 
   return (
     <div className='w-full flex flex-col space-y-5'>
@@ -52,7 +84,26 @@ export default function FormData() {
           </TabsContent>
         </Tabs>
 
+        <Button
+          disabled={state.loading}
+          onClick={submitData}
+          className='mt-5'>
+          {state.loading
+            ? 'Please wait...'
+            : 'Send a message!'}
+        </Button>
+
       </div>
+
+      <LatestMessage
+        isMounted={state.isMounted}
+        updateState={(key, value) => {
+          setState(prev => ({
+            ...prev,
+            [key]: value
+          }))
+        }}
+      />
     </div>
   )
 }
